@@ -1,8 +1,11 @@
 from datetime import datetime
 
+
+
+
 keyAns = int(input("выберите действие:\n"
-                   "1.Вывести список заметок.\n"
-                   "2.Создать новую заметку"))
+                   "1.Показать список заметок.\n"
+                   "2.Создать новую заметку\n"))
 
 glList = [
 
@@ -21,9 +24,9 @@ while keyAns !=1:
 
     content = input("Добавьте описание:")
 
-    #Главный список  1 заметки:
+    #Главный список:
     glNote = {"user_name": user_name,
-              "Tltles": titleList,
+              "Titles": titleList,
               "Content": content,
               }
     #Основной цикл для ввода даты и вывода на экран введенной до этого информации:
@@ -76,8 +79,7 @@ while keyAns !=1:
         correct_status = input("Выберите новый статус заметки:\n 1.выполнено\n"
                                " 2.в процессе\n 3.отложено\n 4.Оставить текущий\n")
         while correct_status == "1" or "2" or "3" or "4":
-            correct_status = input("Выберите новый статус заметки:\n 1.выполнено\n"
-                                   " 2.в процессе\n 3.отложено\n 4.Оставить текущий\n")
+
             if correct_status == "1":
                 corr_status = "Выполнено!"
                 status = corr_status
@@ -103,14 +105,20 @@ while keyAns !=1:
         glNote["Status"] = status
         glList.append(glNote)
         print(glNote)
-        print(glList)
+
         keyAns = int(input("выберите действие:\n"
-                           "1.Вывести список заметок.\n"
-                           "2.Создать новую заметку"))
+                           "1.Показать список заметок.\n"
+                           "2.Создать новую заметку\n"))
         if keyAns == 1:
+            for item in glList:
+                print("**********Заметка**********")
+                print(f"Имя пользователя: {item["user_name"]}")
+                print(f"Заголовок(и): {', '.join(item["Titles"])}")
+                print(f"Описание: {item["Content"]}")
+                print(f"Дата создания заметки:{item["DateStart"]}")
+                print(f"Дата дедлайна: {item["DateOff"]}")
+                print(f"Статус заметки:{item["Status"]}")
             print(glList)
-
-
 
 
     if data_view == 2:
@@ -155,9 +163,9 @@ while keyAns !=1:
 
         correct_status = input("Выберите новый статус заметки:\n 1.выполнено\n"
                                " 2.в процессе\n 3.отложено\n 4.Оставить текущий\n")
+
         while correct_status == 1 or 2 or 3 or 4:
-            correct_status = input("Выберите новый статус заметки:\n 1.выполнено\n"
-                                   " 2.в процессе\n 3.отложено\n 4.Оставить текущий\n")
+
             if correct_status == "1":
                 corr_status = "Выполнено!"
                 status = corr_status
@@ -182,11 +190,19 @@ while keyAns !=1:
         glNote["Status"] = status
         glList.append(glNote)
         print(glNote)
-        print(glList)
+
         keyAns = int(input("выберите действие:\n"
-                           "1.Вывести список заметок.\n"
+                           "1.Показать список заметок.\n"
                            "2.Создать новую заметку"))
         if keyAns == 1:
+            for item in glList:
+                print("**********Заметка**********")
+                print(f"Имя пользователя: {item[user_name]}")
+                print(f"Заголовок(и): {', '.join(item["Titles"])}")
+                print(f"Описание: {item["Content"]}")
+                print(f"Дата создания заметки:{item["DateStart"]}")
+                print(f"Дата дедлайна: {item["DateOff"]}")
+                print(f"Статус заметки:{item["Status"]}")
             print(glList)
 
 
@@ -195,13 +211,12 @@ while keyAns !=1:
         print("Заметка:", titleList)
         print("Описание:", content)
 
-        data3 = datetime.now()  # Получаем дату
-        current_year = data3.year  # Получаем год
+        data3 = datetime.now()  #Получаем дату
+        current_year = data3.year  #Получаем год
 
 
         while True:
             try:
-
                 date_off3_str = input("Введите дату дедлайна (в формате день-месяц, например 25-01): ")
                 day_str, month_str = date_off3_str.split("-")# Разбиваем введенную строку на день и месяц
                 full_date_str = f"{day_str}-{month_str}-{current_year}"# Создаем строку с полной датой, включая текущий год
@@ -211,7 +226,7 @@ while keyAns !=1:
                 time_difference = data_off3 - data3
                 days_difference = time_difference.days
 
-                # Проверяем статус дедлайна
+                #Проверяем статус дедлайна
                 if days_difference < 0:
                     print(f"Внимание! Дедлайн истёк {abs(days_difference):02d} дней назад.")
                     status = "Дедлайн истек!"
@@ -222,8 +237,7 @@ while keyAns !=1:
                     print(f"До дедлайна осталось {days_difference:02d} дней.")
                     status = "Активно!"
 
-
-
+                break
             except ValueError as e:
                 # Обработка ошибки неверного формата даты
                 print("Ошибка! Пожалуйста, введите дату в правильном формате (день-месяц).")
@@ -236,9 +250,8 @@ while keyAns !=1:
 
         correct_status = input("Выберите новый статус заметки:\n 1.выполнено\n 2.в процессе\n 3.отложено\n 4.Оставить текущий\n")
 
-        while correct_status == 1 or 2 or 3 or 4:
-            correct_status = input("Выберите новый статус заметки:\n 1.выполнено\n"
-                                   " 2.в процессе\n 3.отложено\n 4.Оставить текущий\n")
+        while correct_status != 1 or 2 or 3 or 4:
+
             if correct_status == "1":
                 corr_status = "Выполнено!"
                 status = corr_status
@@ -264,9 +277,18 @@ while keyAns !=1:
         glNote["Status"] = status
         glList.append(glNote)
         print(glNote)
-        print(glList)
+
         keyAns = int(input("выберите действие:\n"
-                           "1.Вывести список заметок.\n"
+                           "1.Показать список заметок.\n"
                            "2.Создать новую заметку\n"))
         if keyAns == 1:
-            print(glList)
+            for item in glList:
+                print("**********Заметка**********")
+                print(f"Имя пользователя: {item["user_name"]}")
+                print(f"Заголовок(и): {', '.join(item["Titles"])}")
+                print(f"Описание: {item["Content"]}")
+                print(f"Дата создания заметки:{item["DateStart"]}")
+                print(f"Дата дедлайна: {item["DateOff"]}")
+                print(f"Статус заметки:{item["Status"]}")
+
+
